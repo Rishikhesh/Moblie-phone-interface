@@ -38,7 +38,7 @@ void admin::update_admin()
     int n;
     string s;
     int p;
-    while(true)
+    while(1)
     {
         cout<<endl<<"Please Enter your Pin to modify details: ";
         cin>>p;
