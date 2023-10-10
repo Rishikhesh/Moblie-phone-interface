@@ -5,7 +5,7 @@ class phone
 {
     admin a;
     guest g;
-    menu m;
+    [[no_unique_address]] menu m;
     public:
         void set_pin();
         void verify(int pin);
