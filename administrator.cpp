@@ -59,9 +59,6 @@ void admin::update_admin()
                         cout<<endl<<"Enter phone number(10 Digits): ";
                         cin>>phone_number;
                         s = to_string(phone_number);
-                        if(s.size()!=10){
-                            cout<<endl<<"The phone number you entered is not of 10 digits";
-                        }
                         break;
                 case 3: system("cls");
                         cout<<endl<<"Enter city: ";
@@ -77,9 +74,6 @@ void admin::update_admin()
                         cout<<endl<<"Enter emergency contact(10 Digits): ";
                         cin>>emergency_contact;
                         s = to_string(emergency_contact);
-                        if(s.size()!=10) {
-                            cout<<endl<<"The entered emergency contact was not 10 digits please try again with the coorect number.";
-                        }
                         break;
                 case 6: system("cls");
                         cout<<endl<<"Enter your pin: ";
@@ -87,6 +81,9 @@ void admin::update_admin()
                         cin>>pin;
                 default: break;
             };
+            if((n == 2 || n == 5) && (s.size()!=10) ) {
+                cout<<endl<<"The contact number you entered does not contain 10 digits please check and retry";
+            }
             break;
         }
         else
