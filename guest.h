@@ -1,10 +1,9 @@
 #pragma once
 #include <string>
-using namespace std;
 class guest
 {
-        char username[20];
-        char name[30];
+        string username;
+        string name;
         int pin;
         long long int phone_number;
         int emergency_contact;
@@ -13,6 +12,6 @@ class guest
         void update_guest();
         void view_guest();
         int get_pin();
-        char* get_username();
-        char* get_name();
+        string get_username();
+        string get_name();
 };

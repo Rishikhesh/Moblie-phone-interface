@@ -1,14 +1,15 @@
 #include <iostream>
-#include <windows.h>
+#include <Windows.h>
 #include "phone.h"
 
 using namespace std;
-
+ 
 int main()
 {
     system("Color 7A");
     system("cls");
-    int user_c,choice1;
+    int user_c;
+    int choice1;
     phone p;
     do{
         cout<<"\t\t\t\t\t\t\t\t\t\tLOCK SCREEN";

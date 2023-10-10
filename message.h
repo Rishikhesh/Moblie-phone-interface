@@ -1,6 +1,6 @@
 #include <string>
 class message
-{
+{ 
         long long int to_number;
         string to_name;
         string content;
