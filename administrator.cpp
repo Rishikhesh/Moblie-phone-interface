@@ -12,7 +12,7 @@ void admin::register_admin()
     cout<<endl<<"Fill Your Details!!!";
     cout<<endl<<endl<<"Enter Name: ";
     cin.ignore();
-    gets(name);
+    getline(cin, name);
     do{
         cout<<endl<<"Enter Phone Number(Enter 10 digits): ";
         cin>>phone_number;
@@ -20,9 +20,9 @@ void admin::register_admin()
     }while(s.size()!=10);
     cout<<endl<<"Enter city: ";
     cin.ignore();
-    gets(city);
+    getline(cin, city);
     cout<<endl<<"Enter blood group: ";
-    gets(blood_group);
+    getline(cin, blood_group);
     do{
         cout<<endl<<"Enter emergency contact(Enter 10 Digits): ";
         cin>>emergency_contact;
@@ -53,7 +53,7 @@ void admin::update_admin()
                 case 1: system("cls");
                         cout<<endl<<"Enter new name: ";
                         cin.ignore();
-                        gets(name);
+                        getline(cin, name);
                         break;
                 case 2: system("cls");
                         cout<<endl<<"Enter phone number(10 Digits): ";
@@ -63,12 +63,12 @@ void admin::update_admin()
                 case 3: system("cls");
                         cout<<endl<<"Enter city: ";
                         cin.ignore();
-                        gets(city);
+                        getline(cin, city);
                         break;
                 case 4: system("cls");
                         cout<<endl<<"Enter blood group: ";
                         cin.ignore();
-                        gets(blood_group);
+                        getline(cin, blood_group);
                         break;
                 case 5: system("cls");
                         cout<<endl<<"Enter emergency contact(10 Digits): ";
@@ -107,7 +107,7 @@ int admin::get_pin()
     return pin;
 }
 
-char* admin::return_name()
+string admin::return_name()
 {
     return name;
 }
