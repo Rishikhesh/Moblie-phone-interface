@@ -38,7 +38,7 @@ void admin::update_admin()
     int n;
     string s;
     int p;
-    while(1)
+    while(true)
     {
         cout<<endl<<"Please Enter your Pin to modify details: ";
         cin>>p;
@@ -56,11 +56,12 @@ void admin::update_admin()
                         gets(name);
                         break;
                 case 2: system("cls");
-                        do{
-                            cout<<endl<<"Enter phone number(10 Digits): ";
-                            cin>>phone_number;
-                            s = to_string(phone_number);
-                        }while(s.size()!=10);
+                        cout<<endl<<"Enter phone number(10 Digits): ";
+                        cin>>phone_number;
+                        s = to_string(phone_number);
+                        if(s.size()!=10){
+                            cout<<endl<<"The phone number you entered is not of 10 digits";
+                        }
                         break;
                 case 3: system("cls");
                         cout<<endl<<"Enter city: ";
@@ -73,11 +74,12 @@ void admin::update_admin()
                         gets(blood_group);
                         break;
                 case 5: system("cls");
-                        do{
-                            cout<<endl<<"Enter emergency contact(10 Digits): ";
-                            cin>>emergency_contact;
-                            s = to_string(emergency_contact);
-                        }while(s.size()!=10);
+                        cout<<endl<<"Enter emergency contact(10 Digits): ";
+                        cin>>emergency_contact;
+                        s = to_string(emergency_contact);
+                        if(s.size()!=10) {
+                            cout<<endl<<"The entered emergency contact was not 10 digits please try again with the coorect number.";
+                        }
                         break;
                 case 6: system("cls");
                         cout<<endl<<"Enter your pin: ";
