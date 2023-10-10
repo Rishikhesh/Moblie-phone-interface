@@ -10,7 +10,7 @@ void guest::register_guest()
     string s;
     cout<<endl<<"Enter Name: ";
     cin.ignore();
-    gets(name);
+    getline(cin,name);
     do{
         cout<<endl<<"Enter Contact Number(10 Digits): ";
         cin>>phone_number;
@@ -24,7 +24,7 @@ void guest::register_guest()
 
     cout<<endl<<"Set your Username: ";
     cin.ignore();
-    gets(username);
+    getline(cin,username);
     cout<<endl<<"Set your PIN: ";
     cin>>pin;
 }
@@ -41,26 +41,22 @@ void guest::update_guest()
         case 1: system("cls");
                 cout<<endl<<"Enter new name: ";
                 cin.ignore();
-                gets(name);
+                getline(cin,name);
                     break;
         case 2: system("cls");
-                do{
-                    cout<<endl<<"Enter new phone number(10 Digits): ";
-                    cin>>phone_number;
-                    s = to_string(phone_number);
-                }while(s.size()!=10);
+                cout<<endl<<"Enter new phone number(10 Digits): ";
+                cin>>phone_number;
+                s = to_string(phone_number);
                 break;
         case 3: system("cls");
-                do{
-                    cout<<endl<<"Enter new emergency contact(10 Digits): ";
-                    cin>>emergency_contact;
-                    s = to_string(emergency_contact);
-                }while(s.size()!=10);
+                cout<<endl<<"Enter new emergency contact(10 Digits): ";
+                cin>>emergency_contact;
+                s = to_string(emergency_contact);
                 break;
         case 4: system("cls");
                 cout<<endl<<"Enter new Username: ";
                 cin.ignore();
-                gets(username);
+                getline(cin,username);
                 break;
         case 5: system("cls");
                 cout<<endl<<"Enter your new PIN: ";
@@ -68,6 +64,9 @@ void guest::update_guest()
         default:
                  break;
     };
+    if((n == 2 || n == 3 ) && (s.size() != 10)){
+        cout<<endl<<"The contact number you entered does not have the correct number of digits please verify and enter again";
+    }
 }
 
 void guest::view_guest()
@@ -82,11 +81,11 @@ int guest::get_pin()
     return pin;
 }
 
-char* guest::get_username()
+string guest::get_username()
 {
     return username;
 }
-char* guest::get_name()
+string guest::get_name()
 {
     return name;
 }

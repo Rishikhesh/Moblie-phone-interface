@@ -1,14 +1,13 @@
 #include <string>
-using namespace std;
 
 class music
 {
-        char title[40]  ;
+        string title  ;
     public:
         void add_song();
-        void play_song(char []);
+        void play_song(string);
         void stop_song();
         void delete_song();
         void display_song();
-        char* return_title();
+        string return_title();
 };

@@ -1,16 +1,17 @@
-using namespace std;
 #include "contacts.h"
 #include <iostream>
 #include<stdio.h>
 #include <string>
 #include <string.h>
 
+using namespace std;
+
 void contacts::new_contact()
 {
     string s;
     cout<<endl<<"Enter contact name: ";
     cin.ignore();
-    gets(name);
+    getline(cin,name);
     do{
         cout<<endl<<"Enter contact number(10 Digits): ";
         cin>>contact_number;
@@ -19,14 +20,13 @@ void contacts::new_contact()
     do{
         cout<<endl<<"Enter date of birth (dd/mm/yyyy): ";
         cin>>DOB;
-        //s = to_string(DOB);
-    }while(strlen(DOB)!=10);
+    }while(DOB.size() !=10);
     cout<<endl<<"Enter address: ";
     cin.ignore();
-    gets(address);
+    getline(cin,address);
 }
 
-char* contacts::return_contact()
+string contacts::return_contact()
 {
     return name;
 }
@@ -50,25 +50,24 @@ void contacts::edit_contact()
         case 1: system("cls");
                 cout<<endl<<"Enter new name: ";
                 cin.ignore();
-                gets(name);
+                getline(cin,name);
                 break;
         case 2: system("cls");
-                do{
-                    cout<<endl<<"Enter new number(10 Digits): ";
-                    cin>>contact_number;
-                    s = to_string(contact_number);
-                }while(s.size()!=10);
+                cout<<endl<<"Enter new number(10 Digits): ";
+                cin>>contact_number;
+                s = to_string(contact_number);
                 break;
         case 3:system("cls");
-                do{
-                    cout<<endl<<"Enter new DOB(dd/mm/yyyy): ";
-                    cin>>DOB;
-                }while(strlen(DOB)!=10);
+                cout<<endl<<"Enter new DOB(dd/mm/yyyy): ";
+                cin>>DOB;
                 break;
         case 4:system("cls");
                 cout<<endl<<"Enter new Address: ";
-                gets(address);
+                getline(cin,address);
                 break;
         default: break;
     };
+    if((choice == 2 || choice == 3 ) && (s.size() != 10)){
+        cout<<endl<<"The input is not in the expected format please verify";
+    }
 }

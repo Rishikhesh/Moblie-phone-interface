@@ -11,15 +11,13 @@ void message::new_message()
 
         cout<<endl<<"TO Name: ";
         cin.ignore();
-        gets(to_name);
+        getline(cin, to_name);
 
         cout<<endl<<"DATE (dd/mm/yyyy): ";
-        //cin.ignore();
-        gets(date);
+       getline(cin, date);
 
         cout<<endl<<"Content: ";
-        //cin.ignore();
-        gets(content);
+        getline(cin, content);
 
 }
 
@@ -36,12 +34,12 @@ long long int message::return_to()
     return to_number;
 }
 
-char* message::return_date()
+string message::return_date()
 {
     return date;
 }
 
-char* message::return_to_name()
+string message::return_to_name()
 {
     return to_name;
 }
