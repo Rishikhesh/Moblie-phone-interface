@@ -13,7 +13,8 @@ using namespace std;
 void verifyPin(){
     admin a;
     int aa=0;
-    int p,b;
+    int p;
+    int b;
     read_admin.read((char*)&a,sizeof(admin));
     do{
         cout<<endl<<"Enter your pin: ";
@@ -38,6 +39,49 @@ void verifyPin(){
     }while(aa==0);
 }
 
+void verifyGuestLogin(){
+    guest g;
+    int a=0;
+    int b;
+    int p;
+    char *nam;
+    do{
+        cout<<endl<<"Enter your username: ";
+        cin.ignore();
+        getline(cin,un);
+        cout<<endl<<"Enter your PIN: ";
+        cin>>p;
+        ifstream read_guest;
+        read_guest.open("guest.dat",ios::in|ios::binary);
+        while(!read_guest.eof() && read_guest.is_open())
+        {
+            read_guest.read((char*)&g,sizeof(g));
+            nam = g.get_username();
+            b = g.get_pin();
+            if(strcmp(nam,un)==0)
+            {
+                if(b==p)
+                    {
+                        a=1;
+                        break;
+                    }
+            }
+        }
+        read_guest.close();
+        if(a==1)
+            {
+                system("cls");
+                cout<<endl<<"\t\t\t\t\t\t\t\t\tWELCOME !!! "<<g.get_name();
+                cout<<endl<<endl<<"Press Enter to continue!!!";
+                _getch();
+                this->m.guest_menu(b);
+            }
+        else
+            cout<<endl<<"Invalid username or pin!!!";
+    }while(a==0);
+    
+}
+
 void phone::verify(int choice1)
 {
         string un;
@@ -54,49 +98,13 @@ void phone::verify(int choice1)
                         break;
                     }
             case 2:
-                    {
-                            system("cls");
-                            system("Color 2F");
-                            guest g;
-                            int a=0,b,p;
-                            char *nam;
-                            do{
-                            cout<<endl<<"Enter your username: ";
-                            cin.ignore();
-                            getline(cin,un);
-                            cout<<endl<<"Enter your PIN: ";
-                            cin>>p;
-                            ifstream read_guest;
-                            read_guest.open("guest.dat",ios::in|ios::binary);
-                            while(!read_guest.eof() && read_guest.is_open())
-                            {
-                                read_guest.read((char*)&g,sizeof(g));
-                                nam = g.get_username();
-                                b = g.get_pin();
-                                if(strcmp(nam,un)==0)
-                                {
-                                    if(b==p)
-                                        {
-                                            a=1;
-                                            break;
-                                        }
-                                }
-                            }
-                            read_guest.close();
-                            if(a==1)
-                                {
-                                    system("cls");
-                                    cout<<endl<<"\t\t\t\t\t\t\t\t\tWELCOME !!! "<<g.get_name();
-                                    cout<<endl<<endl<<"Press Enter to continue!!!";
-                                    _getch();
-                                    this->m.guest_menu(b);
-                                }
-                            else
-                                cout<<endl<<"Invalid username or pin!!!";
-                            }while(a==0);
-                            system("cls");
-                            break;
-                        }
+                {
+                        system("cls");
+                        system("Color 2F");
+                        verifyGuestLogin();
+                        system("cls");
+                        break;
+                    }
                 default: break;
             };
 }
