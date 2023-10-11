@@ -272,7 +272,8 @@ void deleteMessage(messsage *mes){
 
     ifstream r_message;
     ofstream w_message;
-    long long int t,tt;
+    long long int t;
+    long long int tt;
     string d;
     string dd;
     conf = 0;
@@ -574,6 +575,7 @@ void guestStopSong(music *mu){
 }
 
 void adminMenuSwitch(){
+    int choice2;
     system("cls");
     system("Color 7C");
     cout<<endl<<"[1]:ADD CONTACT"<<endl<<"[2]:EDIT CONTACT"<<endl<<"[3]:SEARCH CONTACT"<<endl<<"[4]:DISPLAY CONTACTS"<<endl<<"[5]:DELETE CONTACT"<<endl<<"[6]:BACK"<<endl<<"ENTER YOUR CHOICE:";
@@ -610,6 +612,8 @@ void adminMenuSwitch(){
 }
 
 void guestMenuSwitch(){
+    int choice2;
+    int conf = 0;
     system("cls");
     system("Color 8A");
     cout<<"\t\t\t\t\t\t\t\t\t\tMENU";
@@ -684,7 +688,6 @@ void guestMenuSwitch(){
 void menu::admin_menu()
 {
     int choice1=0;
-    int pos;
     int conf=0;
     int flag=0;
     string nam1,
@@ -794,8 +797,6 @@ void menu::admin_menu()
 void menu::guest_menu(int p)
 {
     int choice1;
-    int choice2;
-    int conf = 0;
     do
     {
         guestMenuSwitch();
