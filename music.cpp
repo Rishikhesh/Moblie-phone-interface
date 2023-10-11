@@ -1,10 +1,11 @@
 #include "music.h"
 #include <iostream>
-using namespace std;
 #include <string>
 #include <windows.h>
 #include <mmsystem.h>
 #include<stdio.h>
+ 
+using namespace std;
 
 void music::add_song()
 {
@@ -13,12 +14,12 @@ void music::add_song()
     gets(title);
 }
 
-void music::play_song(char sound[40])
+void music::play_song(string sound)
 {
-    PlaySound(TEXT(sound),NULL,SND_ASYNC);
+    PlaySound(TEXT(sound),nullptr,SND_ASYNC);
 }
 
-char* music::return_title()
+string music::return_title()
 {
     return title;
 }
@@ -30,5 +31,5 @@ void music::display_song()
 
 void music::stop_song()
 {
-    PlaySound(NULL,NULL,0);
+    PlaySound(nullptr,nullptr,0);
 }
