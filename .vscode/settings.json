@@ -1,6 +1,11 @@
 {
     "files.associations": {
         "istream": "cpp",
-        "__config": "cpp"
+        "__config": "cpp",
+        "iosfwd": "cpp",
+        "ostream": "cpp",
+        "iostream": "cpp",
+        "fstream": "cpp",
+        "locale": "cpp"
     }
 }
