@@ -39,6 +39,30 @@ void verifyPin(){
     }while(aa==0);
 }
 
+void checkGuest(int a){
+
+    ifstream read_guest;
+    read_guest.open("guest.dat",ios::in|ios::binary);
+    while(!read_guest.eof() && read_guest.is_open())
+    {
+        read_guest.read((char*)&g,sizeof(g));
+        nam = g.get_username();
+        b = g.get_pin();
+        if(strcmp(nam,un)==0)
+        {
+            if(b==p)
+                {
+                    a=1;
+                    break;
+                }
+        }
+    }
+    read_guest.close();
+
+    return a;
+
+}
+
 void verifyGuestLogin(){
     guest g;
     int a=0;
@@ -51,23 +75,7 @@ void verifyGuestLogin(){
         getline(cin,un);
         cout<<endl<<"Enter your PIN: ";
         cin>>p;
-        ifstream read_guest;
-        read_guest.open("guest.dat",ios::in|ios::binary);
-        while(!read_guest.eof() && read_guest.is_open())
-        {
-            read_guest.read((char*)&g,sizeof(g));
-            nam = g.get_username();
-            b = g.get_pin();
-            if(strcmp(nam,un)==0)
-            {
-                if(b==p)
-                    {
-                        a=1;
-                        break;
-                    }
-            }
-        }
-        read_guest.close();
+        checkGuest(a);
         if(a==1)
             {
                 system("cls");
@@ -128,8 +136,7 @@ void phone::set_pin()
             {
                     system("cls");
                     cout<<endl<<"\t\t\t\t\t\t\tAdministrator Registration!!!";
-                    admin a ;
-                    a.register_admin();
+                    this->a.register_admin();
                     write_admin.write((char*)&a,sizeof(admin));
                     checker_w.open("check.dat",ios::out|ios::binary);
                     checker_w << 1;
@@ -141,8 +148,7 @@ void phone::set_pin()
         else
             {
                     cout<<endl<<"\t\t\t\t\t\t\t\tGuest Registration!!!";
-                    guest g;
-                    g.register_guest();
+                    this->g.register_guest();
                     write_guest.write((char*)&g,sizeof(g));
                     this->g=g;
                     cout<<endl<<"User Registered Successfully!!!"<<endl<<endl<<"Press Enter to Continue!!!";
