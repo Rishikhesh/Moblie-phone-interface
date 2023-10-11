@@ -69,6 +69,7 @@ void addContact(contacts *c){
 void editContact(contacts *c){
 
     conf = 0;
+    int pos;
     fstream contact;
     cout<<endl<<"Enter the contact name you want to edit:";
     cin.ignore();
@@ -272,8 +273,8 @@ void deleteMessage(messsage *mes){
     ifstream r_message;
     ofstream w_message;
     long long int t,tt;
-    // char d[20],*dd;
-    string  d, dd;
+    string d;
+    string dd;
     conf = 0;
     flag=0;
     cout<<"\t\t\t\t\t\t\t\tDELETE";
@@ -442,14 +443,17 @@ void deleteSong(music *mu){
     w_music.close();
     remove("music.dat");
     rename("temp.dat","music.dat");
-    if(conf == 1)
-    cout<<endl<<"Song Deleted Successfully!!!"<<endl<<endl<<"Press Enter to Continue!!!";
-    else
+    if(conf == 1){
+        cout<<endl<<"Song Deleted Successfully!!!"<<endl<<endl<<"Press Enter to Continue!!!";
+    }
+    else{
     cout<<endl<<"No such song found to delete!!";
+    }
     _getch();
 }
 
 void guestSettingsUpdate(){
+    int pos;
     guest g;
     conf = 0;
     string c;
@@ -501,8 +505,9 @@ void guestSettingsView(){
     while(read_guest.read((char*)&g,sizeof(guest)))
     {
         b = g.get_username();
-        if(x == b)
-        g.view_guest();
+        if(x == b){
+            g.view_guest();
+        }
     }
     cout<<endl<<endl<<"Press Enter To Continue!!!";
     _getch();
@@ -568,6 +573,114 @@ void guestStopSong(music *mu){
     _getch();
 }
 
+void adminMenuSwitch(){
+    system("cls");
+    system("Color 7C");
+    cout<<endl<<"[1]:ADD CONTACT"<<endl<<"[2]:EDIT CONTACT"<<endl<<"[3]:SEARCH CONTACT"<<endl<<"[4]:DISPLAY CONTACTS"<<endl<<"[5]:DELETE CONTACT"<<endl<<"[6]:BACK"<<endl<<"ENTER YOUR CHOICE:";
+    cin>>choice2;
+    system("cls");
+    switch(choice2)
+    {
+        case 1:
+        {
+            addContact(c);
+            break;
+        }
+        case 2:
+        {
+            editContact(c);
+            break;
+        }
+        case 3:
+        {
+            searchContact(c)
+            break;
+        }
+        case 4:
+        {
+            displayContact(c);
+            break;
+        }
+        case 5:
+        {
+            deleteContact(c)
+            break;
+        }
+    }
+}
+
+void guestMenuSwitch(){
+    system("cls");
+    system("Color 8A");
+    cout<<"\t\t\t\t\t\t\t\t\t\tMENU";
+    cout<<endl<<"[1]:Settings"<<endl<<"[2]:Music"<<endl<<"[3]:LOGOUT"<<endl<<"Enter your choice: ";
+    cin>>choice1;
+    system("cls");
+    switch(choice1)
+    {
+        case 1:
+            {
+                do
+                {
+                system("cls");
+                cout<<"\t\t\t\t\t\t\t\t\t\tSETTINGS";
+                cout<<endl<<"[1]:Update"<<endl<<"[2]:View"<<endl<<"[3]:BACK"<<endl<<"Enter your choice: ";
+                cin>>choice2;
+                system("cls");
+                switch(choice2)
+                {
+                case 1:
+                    {
+                        guestSettingsUpdate();
+                        break;
+                    }
+                case 2:
+                    {
+                        guestSettingsView();
+                        break;
+                    }
+                default: break;
+                }
+                }while(choice2<3);
+                system("cls");
+                break;
+            }
+        case 2:
+            {
+                music mu;
+                string mus;
+                do{
+                system("cls");
+                cout<<"\t\t\t\t\t\t\t\t\tMUSIC";
+                cout<<endl<<"[1]:PLAY LIST"<<endl<<"[2]:PLAY SONG"<<endl<<"[3]:STOP SONG"<<endl<<"[4]:BACK"<<endl<<endl<<"Enter your choice: ";
+                cin>>choice2;
+                switch(choice2)
+                {
+                case 1:
+                {
+                    guestPlaySong(mu);
+                    break;
+                }
+                case 2:
+                {
+                    guestViewPlayList(mu);   
+                    break;
+                }
+                case 3:
+                {
+                    guestStopSong(mu);
+                    break;
+                }
+                default: break;
+            }
+            }while(choice2 < 4);
+            mu.stop_song();
+            break;
+        }
+        default: break;
+    }
+}
+
 void menu::admin_menu()
 {
     int choice1=0;
@@ -594,39 +707,7 @@ void menu::admin_menu()
                             system("color 5A");
                             contacts c;
                             do{
-                                system("cls");
-                                system("Color 7C");
-                                cout<<endl<<"[1]:ADD CONTACT"<<endl<<"[2]:EDIT CONTACT"<<endl<<"[3]:SEARCH CONTACT"<<endl<<"[4]:DISPLAY CONTACTS"<<endl<<"[5]:DELETE CONTACT"<<endl<<"[6]:BACK"<<endl<<"ENTER YOUR CHOICE:";
-                                cin>>choice2;
-                                system("cls");
-                                switch(choice2)
-                                {
-                                    case 1:
-                                    {
-                                        addContact(c);
-                                        break;
-                                    }
-                                    case 2:
-                                    {
-                                        editContact(c);
-                                        break;
-                                    }
-                                    case 3:
-                                    {
-                                        searchContact(c)
-                                        break;
-                                    }
-                                    case 4:
-                                    {
-                                        displayContact(c);
-                                        break;
-                                    }
-                                    case 5:
-                                    {
-                                        deleteContact(c)
-                                        break;
-                                    }
-                                }
+                                adminMenuSwitch();
                             } while(choice2<6);
                             break;
                         }
@@ -717,75 +798,6 @@ void menu::guest_menu(int p)
     int conf = 0;
     do
     {
-        system("cls");
-        system("Color 8A");
-        cout<<"\t\t\t\t\t\t\t\t\t\tMENU";
-        cout<<endl<<"[1]:Settings"<<endl<<"[2]:Music"<<endl<<"[3]:LOGOUT"<<endl<<"Enter your choice: ";
-        cin>>choice1;
-        system("cls");
-        switch(choice1)
-        {
-            case 1:
-                {
-                    int pos;
-                    do
-                    {
-                    system("cls");
-                    cout<<"\t\t\t\t\t\t\t\t\t\tSETTINGS";
-                    cout<<endl<<"[1]:Update"<<endl<<"[2]:View"<<endl<<"[3]:BACK"<<endl<<"Enter your choice: ";
-                    cin>>choice2;
-                    system("cls");
-                    switch(choice2)
-                    {
-                    case 1:
-                        {
-                            guestSettingsUpdate();
-                            break;
-                        }
-                    case 2:
-                        {
-                            guestSettingsView();
-                            break;
-                        }
-                    default: break;
-                    }
-                    }while(choice2<3);
-                    system("cls");
-                    break;
-                }
-            case 2:
-                {
-                    music mu;
-                    string mus;
-                    do{
-                    system("cls");
-                    cout<<"\t\t\t\t\t\t\t\t\tMUSIC";
-                    cout<<endl<<"[1]:PLAY LIST"<<endl<<"[2]:PLAY SONG"<<endl<<"[3]:STOP SONG"<<endl<<"[4]:BACK"<<endl<<endl<<"Enter your choice: ";
-                    cin>>choice2;
-                    switch(choice2)
-                    {
-                    case 1:
-                    {
-                        guestPlaySong(mu);
-                        break;
-                    }
-                    case 2:
-                    {
-                        guestViewPlayList(mu);   
-                        break;
-                    }
-                    case 3:
-                    {
-                        guestStopSong(mu);
-                        break;
-                    }
-                    default: break;
-                }
-                }while(choice2 < 4);
-                mu.stop_song();
-                break;
-            }
-            default: break;
-        }
-        }while(choice1<3);
+        guestMenuSwitch();
+    }while(choice1<3);
 }
