@@ -9,9 +9,38 @@
 
 using namespace std;
 
+
+void verifyPin(){
+    admin a;
+    int aa=0;
+    int p,b;
+    read_admin.read((char*)&a,sizeof(admin));
+    do{
+        cout<<endl<<"Enter your pin: ";
+        cin>>p;
+        b = a.get_pin();
+        if(p == b)
+        {
+            system("cls");
+            cout<<endl<<"\t\t\t\t\t\t\tWELCOME !!!"<<a.return_name();
+            cout<<endl<<endl<<"Press Enter to continue!!!";
+            _getch();
+            this->m.admin_menu();
+            read_admin.close();
+            aa = 1;
+            break;
+        }
+        else
+        {
+            cout<<endl<<endl<<"Invalid pin!!!";
+        }
+
+    }while(aa==0);
+}
+
 void phone::verify(int choice1)
 {
-        char un[20];
+        string un;
         switch(choice1)
         {
             case 1:
@@ -20,31 +49,7 @@ void phone::verify(int choice1)
                         system("Color 5C");
                         ifstream read_admin;
                         read_admin.open("admin.dat",ios::in|ios::binary);
-                        admin a;
-                        int aa=0;
-                        int p,b;
-                        read_admin.read((char*)&a,sizeof(admin));
-                        do{
-                            cout<<endl<<"Enter your pin: ";
-                            cin>>p;
-                            b = a.get_pin();
-                            if(p == b)
-                            {
-                                system("cls");
-                                cout<<endl<<"\t\t\t\t\t\t\tWELCOME !!!"<<a.return_name();
-                                cout<<endl<<endl<<"Press Enter to continue!!!";
-                                _getch();
-                                this->m.admin_menu();
-                                read_admin.close();
-                                aa = 1;
-                                break;
-                            }
-                            else
-                            {
-                                cout<<endl<<endl<<"Invalid pin!!!";
-                            }
-
-                        }while(aa==0);
+                        verifyPin();
                         system("cls");
                         break;
                     }
@@ -58,7 +63,7 @@ void phone::verify(int choice1)
                             do{
                             cout<<endl<<"Enter your username: ";
                             cin.ignore();
-                            gets(un);
+                            getline(cin,un);
                             cout<<endl<<"Enter your PIN: ";
                             cin>>p;
                             ifstream read_guest;
